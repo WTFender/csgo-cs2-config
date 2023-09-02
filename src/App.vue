@@ -272,8 +272,8 @@ const bind_values = [
   { old: 'weapon_molotov', new: 'slot10' },
   { old: 'weapon_incgrenade', new: 'slot10' },
   // old
-  { old: '+jumpthrow', new: null },
-  { old: '+radio3', new: null },
+  { old: 'jumpthrow', new: null }, // generic
+  { old: 'radio3', new: null },
 ]
 </script>
 

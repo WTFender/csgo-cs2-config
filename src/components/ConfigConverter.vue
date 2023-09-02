@@ -56,9 +56,7 @@ export default {
         })
         this.bind_values.forEach((v) => {
           if (line.startsWith('bind') && line.toLowerCase().endsWith(`"${v.old}"`)) {
-            console.log(line)
             line = line.toLowerCase().replace(v.old, v.new)
-            console.log(line)
           }
         })
         new_cfg += line + '\n'
@@ -77,10 +75,12 @@ export default {
       // removed bind values
       this.bind_values.forEach((v) => {
         if (v.new === null) {
+          let rex = new RegExp(`^bind .*${v.old}\"\?$`, 'gmi')
+          new_cfg = new_cfg.replace(rex, "")
           // remove bind line entirely
           // TODO notify user
-          let rex = new RegExp(`^bind \"\?(.+)\"\? \"\?${v.old}\"\? .*$`, 'gmi')
-          new_cfg = new_cfg.replace(rex, "")
+          console.log(v.old)
+          console.log(new_cfg)
         }
       })
 
