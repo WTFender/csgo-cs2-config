@@ -7,7 +7,17 @@ import ConfigConverter from './components/ConfigConverter.vue'
 // default: the default value for the cs2 command, if the
 //          value type has changed, the default will be set
 
+const new_commands = [
+
+]
+
 const commands = [
+  // migrated
+  { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
+  // new commands & binds
+  { old: null, new: 'bind "mouse_x"', default: 'yaw'},
+  { old: null, new: 'bind "mouse_y"', default: 'pitch' },
+  // old
   { old: 'ai_report_task_timings_on_limit', new: null },
   { old: 'ai_think_limit_label', new: null },
   { old: 'budget_averages_window', new: null },
@@ -159,7 +169,6 @@ const commands = [
   { old: 'net_scale', new: null },
   { old: 'net_steamcnx_allowrelay', new: null },
   { old: 'skill', new: null },
-  { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
   { old: 'npc_height_adjust', new: null },
   { old: 'play_distance', new: null },
   { old: 'player_competitive_maplist_8_6_0_DFED41DC', new: null },
@@ -255,13 +264,17 @@ const bind_keys = [
 ]
 
 const bind_values = [
-  { old: 'hegrenade', new: 'slot6' },
-  { old: 'flashbang', new: 'slot7' },
-  { old: 'smokegrenade', new: 'slot8' },
-  { old: 'decoy', new: 'slot9' },
-  { old: 'molotov', new: 'slot10' },
-  { old: 'incgrenade', new: 'slot10' },
+  { old: '+scorenet', new: '+showscores' },
+  { old: '+moveleft', new: '+left' },
+  { old: '+moveright', new: '+right' },
   { old: '+speed', new: '+sprint' },
+  // weapon binds, not buy binds
+  { old: 'weapon_hegrenade', new: 'slot6' },
+  { old: 'weapon_flashbang', new: 'slot7' },
+  { old: 'weapon_smokegrenade', new: 'slot8' },
+  { old: 'weapon_decoy', new: 'slot9' },
+  { old: 'weapon_molotov', new: 'slot10' },
+  { old: 'weapon_incgrenade', new: 'slot10' },
 ]
 </script>
 

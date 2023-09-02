@@ -43,51 +43,71 @@ export default {
       }, 2000);
     },
     migrateConfig(cfg) {
+      let new_cfg = ''
+
+      // updated binds
+      cfg.split('\n').forEach((line) => {
+        this.bind_keys.forEach((bind) => {
+          if (bind.new !== null && line.startsWith(`bind "${bind.old}"`)) {
+            let rex = new RegExp(`bind \"${bind.old}\"`, 'gmi')
+            line = line.toLowerCase().replace(rex, `bind "${bind.new}"`)
+
+          }
+        })
+        this.bind_values.forEach((v) => {
+          if (line.startsWith('bind') && line.toLowerCase().endsWith(`"${v.old}"`)) {
+            console.log(line)
+            line = line.toLowerCase().replace(v.old, v.new)
+            console.log(line)
+          }
+        })
+        new_cfg += line + '\n'
+      })
+
+      // removed bind keys
+      this.bind_keys.forEach((bind) => {
+        if (bind.new === null) {
+          // remove bind line entirely
+          // TODO notify user
+          let rex = new RegExp(`^bind \"\?${bind.old}\"\? .*$`, 'gmi')
+          new_cfg = new_cfg.replace(rex, "")
+        }
+      })
+
+      // removed bind values
+      this.bind_values.forEach((v) => {
+        if (v.new === null) {
+          // remove bind line entirely
+          // TODO notify user
+          let rex = new RegExp(`^bind \"\?(.+)\"\? \"\?${v.old}\"\? .*$`, 'gmi')
+          new_cfg = new_cfg.replace(rex, "")
+        }
+      })
+
+      // updated commands
       this.commands.forEach((cmd) => {
-        if (cmd.new !== null && 'default' in cmd) {
+        if (cmd.old === null) {
+          // add new command
+          new_cfg += `\n${cmd.new} "${cmd.default}"`
+        } else if (cmd.new !== null && 'default' in cmd) {
           // replace command line with new command & default value
           let rex = new RegExp(`^${cmd.old} .*$`, 'gmi')
-          cfg = cfg.replace(rex, `${cmd.new} "${cmd.default}"`)
+          new_cfg = new_cfg.replace(rex, `${cmd.new} "${cmd.default}"`)
         } else if (cmd.new !== null) {
           // replace with new command
-          cfg = cfg.replaceAll(cmd.old, cmd.new)
+          new_cfg = new_cfg.replaceAll(cmd.old, cmd.new)
         } else {
           // remove command line entirely
           // space after command is important
           // for similar commands
           let rex = new RegExp(`^${cmd.old} .*$`, 'gmi')
-          cfg = cfg.replace(rex, "")
-        }
-      })
-
-      this.bind_keys.forEach((bind) => {
-        if (bind.new !== null) {
-          // replace bind key with new key name
-          let rex = new RegExp(`^bind \"\?${bind.old}\"\?`, 'gmi')
-          cfg = cfg.replace(rex, `bind "${bind.new}"`)
-        } else {
-          // remove bind line entirely
-          // TODO notify user
-          let rex = new RegExp(`^bind \"\?${bind.old}\"\? .*$`, 'gmi')
-          cfg = cfg.replace(rex, "")
-        }
-      })
-
-      this.bind_values.forEach((v) => {
-        if (v.new !== null) {
-          // replace bind value with new value
-          cfg = cfg.replaceAll(v.old, v.new)
-        } else {
-          // remove bind line entirely
-          // TODO notify user
-          let rex = new RegExp(`^bind \"\?(.+)\"\? \"\?${v.old}\"\? .*$`, 'gmi')
-          cfg = cfg.replace(rex, "")
+          new_cfg = new_cfg.replace(rex, "")
         }
       })
 
       // remove empty lines
-      cfg = cfg.replace(/(^[ \t]*\n)/gmi, "")
-      return cfg
+      new_cfg = new_cfg.replace(/(^[ \t]*\n)/gmi, "")
+      return new_cfg
     },
     downloadConfig() {
       const fileToSave = new Blob([this.upload], {
