@@ -7,10 +7,6 @@ defineProps({
   path: {
     type: String,
     required: false
-  },
-  issueUrl: {
-    type: String,
-    required: false
   }
 })
 </script>
@@ -18,8 +14,7 @@ defineProps({
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3 v-if="path">{{ path }}</h3>
-    <a v-if="issueUrl" :href="issueUrl">{{ issueUrl }}</a>
+    <h3>{{ path }}</h3>
   </div>
 </template>
 

@@ -41,19 +41,47 @@ export default {
       this.commands.forEach((cmd) => {
         if (cmd.new !== null && 'default' in cmd){
           // replace command line with new command & default value
-          let rex = new RegExp(`^${cmd.old} .*$`, 'gm')
-          cfg = cfg.replace(rex, `${cmd.new} ${cmd.default}`)
+          let rex = new RegExp(`^${cmd.old} .*$`, 'gmi')
+          cfg = cfg.replace(rex, `${cmd.new} "${cmd.default}"`)
         } else if (cmd.new !== null) { 
           // replace with new command
           cfg = cfg.replaceAll(cmd.old, cmd.new)
-        }else {
+        } else {
           // remove command line entirely
           // space after command is important
           // for similar commands
-          let rex = new RegExp(`^${cmd.old} .*$`, 'gm')
+          let rex = new RegExp(`^${cmd.old} .*$`, 'gmi')
           cfg = cfg.replace(rex, "")
         }
       })
+
+      this.bind_keys.forEach((bind) => {
+        if (bind.new !== null){
+          // replace bind key with new key name
+          let rex = new RegExp(`^bind \"\?${bind.old}\"\?`, 'gmi')
+          cfg = cfg.replace(rex, `bind "${bind.new}"`)
+        } else {
+          // remove bind line entirely
+          // TODO notify user
+          let rex = new RegExp(`^bind \"\?${bind.old}\"\? .*$`, 'gmi')
+          cfg = cfg.replace(rex, "")
+        }
+      })
+
+      this.bind_values.forEach((v) => {
+        if (v.new !== null){
+          // replace bind value with new value
+          cfg = cfg.replaceAll(v.old, v.new)
+        } else {
+          // remove bind line entirely
+          // TODO notify user
+          let rex = new RegExp(`^bind \"\?(.+)\"\? \"\?${v.old}\"\? .*$`, 'gmi')
+          cfg = cfg.replace(rex, "")
+        }
+      })
+
+      // remove empty lines
+      cfg = cfg.replace(/(^[ \t]*\n)/gmi, "")
       return cfg
     },
     downloadConfig() {
@@ -79,7 +107,7 @@ export default {
 </script>
 
 <template>
-  <Config>
+  <Config :active="upload === ''">
     <template #icon>
       <UploadIcon :class="upload === '' ? 'active' : ''" @click="uploadConfig()" />
     </template>
@@ -88,14 +116,13 @@ export default {
     <input ref="fileUpload" id="fileUpload" type="file" hidden @change="setConfig()">
   </Config>
 
-  <Config>
+  <Config :active="upload !== ''">
     <template #icon>
       <DownloadIcon :class="upload !== '' ? 'active' : ''" @click="downloadConfig()" />
     </template>
     <template #heading>Download CS2 Config</template>
     <textarea ref="download" class="config">{{ download }}</textarea>
   </Config>
-  <a style="float: right; padding-right: 25px;" href="https://github.com/sponsors/WTFender">Donate</a>
 </template>
 <style scoped>
 .config {
