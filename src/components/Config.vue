@@ -8,9 +8,9 @@ defineProps({
 </script>
 
 <template>
-  <div class="item" >
-    <i :class="{active: active}">
-      <slot class= "icon" name="icon"></slot>
+  <div class="item">
+    <i :class="{ active: active }">
+      <slot class="icon" name="icon"></slot>
     </i>
     <div class="details">
       <h3>
@@ -27,6 +27,7 @@ defineProps({
   display: flex;
   position: relative;
 }
+
 .active {
   border-color: hsla(160, 100%, 37%, 1);
   transition-duration: 2000ms;

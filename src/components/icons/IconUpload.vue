@@ -5,4 +5,5 @@
       stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     <path d="M12 16V3M12 3L16 7.375M12 3L8 7.375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
       stroke-linejoin="round" />
-</svg></template>
+  </svg>
+</template>

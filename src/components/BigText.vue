@@ -19,14 +19,16 @@ defineProps({
 </template>
 
 <style scoped>
-h1, a {
+h1,
+a {
   font-weight: 500;
   font-size: 2.6rem;
   position: relative;
   top: -10px;
 }
 
-h3, a {
+h3,
+a {
   font-size: 1.2rem;
 }
 
@@ -36,9 +38,9 @@ h3, a {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;
   }
-}
-</style>
+}</style>

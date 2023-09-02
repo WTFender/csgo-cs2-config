@@ -39,11 +39,11 @@ export default {
   methods: {
     migrateConfig(cfg) {
       this.commands.forEach((cmd) => {
-        if (cmd.new !== null && 'default' in cmd){
+        if (cmd.new !== null && 'default' in cmd) {
           // replace command line with new command & default value
           let rex = new RegExp(`^${cmd.old} .*$`, 'gmi')
           cfg = cfg.replace(rex, `${cmd.new} "${cmd.default}"`)
-        } else if (cmd.new !== null) { 
+        } else if (cmd.new !== null) {
           // replace with new command
           cfg = cfg.replaceAll(cmd.old, cmd.new)
         } else {
@@ -56,7 +56,7 @@ export default {
       })
 
       this.bind_keys.forEach((bind) => {
-        if (bind.new !== null){
+        if (bind.new !== null) {
           // replace bind key with new key name
           let rex = new RegExp(`^bind \"\?${bind.old}\"\?`, 'gmi')
           cfg = cfg.replace(rex, `bind "${bind.new}"`)
@@ -69,7 +69,7 @@ export default {
       })
 
       this.bind_values.forEach((v) => {
-        if (v.new !== null){
+        if (v.new !== null) {
           // replace bind value with new value
           cfg = cfg.replaceAll(v.old, v.new)
         } else {
@@ -130,10 +130,12 @@ export default {
   height: 150px;
   transition-duration: 2000ms;
 }
+
 .active {
   color: hsla(160, 100%, 37%, 1);
   transition-duration: 2000ms;
 }
+
 svg:hover {
   cursor: pointer;
 }
