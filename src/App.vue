@@ -281,7 +281,7 @@ const bind_values = [
   <header>
     <div class="wrapper">
       <BigText class="big-text" msg="CSGO Config Path"
-        path="C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg" />
+        path="C:\Program Files (x86)\Steam\userdata\%UserId%\730\local\cfg" />
       <BigText class="big-text" msg="CS2 Config Path"
         path="C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\csgo\cfg" />
     </div>
