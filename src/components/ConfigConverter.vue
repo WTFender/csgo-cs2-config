@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       upload: '',
+      copyText: 'Click to Copy',
     }
   },
   components: {
@@ -33,10 +34,15 @@ export default {
       return this.migrateConfig(this.upload);
     },
   },
-  watch: {
-
-  },
   methods: {
+    copy() {
+      this.$refs.copy.focus();
+      document.execCommand('copy');
+      this.copyText = 'Copied!';
+      setTimeout(() => {
+        this.copyText = 'Click to Copy';
+      }, 2000);
+    },
     migrateConfig(cfg) {
       this.commands.forEach((cmd) => {
         if (cmd.new !== null && 'default' in cmd) {
@@ -111,7 +117,7 @@ export default {
     <template #icon>
       <UploadIcon :class="upload === '' ? 'active' : ''" @click="uploadConfig()" />
     </template>
-    <template #heading>Upload CSGO Config</template>
+    <template #heading>Paste CSGO Config</template>
     <textarea v-model="upload" class="config"></textarea>
     <input ref="fileUpload" id="fileUpload" type="file" hidden @change="setConfig()">
   </Config>
@@ -120,8 +126,11 @@ export default {
     <template #icon>
       <DownloadIcon :class="upload !== '' ? 'active' : ''" @click="downloadConfig()" />
     </template>
-    <template #heading>Download CS2 Config</template>
-    <textarea ref="download" class="config">{{ download }}</textarea>
+    <template #heading>Copy CS2 Config</template>
+    <Diff class="copy" @click="copy()" mode="unified" theme="dark" language="plaintext" :prev="upload" :current="download"
+      :virtual-scroll="{ height: 250, lineMinHeight: 24, delay: 100 }" />
+    <input v-on:focus="$event.target.select()" ref="copy" readonly :value="download" hidden />
+    <p>{{ download !== '' ? copyText : '&nbsp' }}</p>
   </Config>
 </template>
 <style scoped>
@@ -136,7 +145,7 @@ export default {
   transition-duration: 2000ms;
 }
 
-svg:hover {
+svg:hover, .copy:hover {
   cursor: pointer;
 }
 </style>

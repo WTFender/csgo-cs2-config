@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-diff": "^1.2.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.1",

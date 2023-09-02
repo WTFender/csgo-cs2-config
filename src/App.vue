@@ -278,7 +278,6 @@ const bind_values = [
   <main>
     <ConfigConverter :commands="commands" :bind_keys="bind_keys" :bind_values="bind_values" />
   </main>
-
   <div style="float: right; padding-right: 25px;"><a href="https://github.com/WTFender/csgo-cs2-config/issues/new">🐛
       Missing Commands?</a></div><br>
   <div style="float: right; padding-right: 25px;"><a href="https://github.com/sponsors/WTFender">❤️ Donate</a></div>

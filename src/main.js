@@ -1,6 +1,10 @@
 import './assets/main.css'
+import VueDiff from 'vue-diff';
+import 'vue-diff/dist/index.css';
 
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(VueDiff);
+app.mount('#app')
