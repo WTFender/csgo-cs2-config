@@ -36,8 +36,7 @@ export default {
   },
   methods: {
     copy() {
-      this.$refs.copy.focus();
-      document.execCommand('copy');
+      navigator.clipboard.writeText(this.download);
       this.copyText = 'Copied!';
       setTimeout(() => {
         this.copyText = 'Click to Copy';
@@ -129,7 +128,6 @@ export default {
     <template #heading>Copy CS2 Config</template>
     <Diff class="copy" @click="copy()" mode="unified" theme="dark" language="plaintext" :prev="upload" :current="download"
       :virtual-scroll="{ height: 250, lineMinHeight: 24, delay: 100 }" />
-    <input v-on:focus="$event.target.select()" ref="copy" readonly :value="download" hidden />
     <p>{{ download !== '' ? copyText : '&nbsp' }}</p>
   </Config>
 </template>
