@@ -7,10 +7,6 @@ import ConfigConverter from './components/ConfigConverter.vue'
 // default: the default value for the cs2 command, if the
 //          value type has changed, the default will be set
 
-const new_commands = [
-
-]
-
 const commands = [
   // migrated
   { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
@@ -275,6 +271,9 @@ const bind_values = [
   { old: 'weapon_decoy', new: 'slot9' },
   { old: 'weapon_molotov', new: 'slot10' },
   { old: 'weapon_incgrenade', new: 'slot10' },
+  // old
+  { old: '+jumpthrow', new: null },
+  { old: '+radio3', new: null },
 ]
 </script>
 
