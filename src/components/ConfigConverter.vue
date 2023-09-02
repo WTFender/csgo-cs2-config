@@ -108,7 +108,7 @@ export default {
       return new_cfg
     },
     downloadConfig() {
-      const fileToSave = new Blob([download], {
+      const fileToSave = new Blob([this.download], {
         type: 'text/plain',
       });
       saveAs(fileToSave, 'cs2.cfg');
