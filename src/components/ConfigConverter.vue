@@ -75,12 +75,10 @@ export default {
       // removed bind values
       this.bind_values.forEach((v) => {
         if (v.new === null) {
-          let rex = new RegExp(`^bind .*${v.old}\"\?$`, 'gmi')
-          new_cfg = new_cfg.replace(rex, "")
           // remove bind line entirely
           // TODO notify user
-          console.log(v.old)
-          console.log(new_cfg)
+          let rex = new RegExp(`^bind .*${v.old}\"\?$`, 'gmi')
+          new_cfg = new_cfg.replace(rex, "")
         }
       })
 
