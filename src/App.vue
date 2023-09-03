@@ -243,6 +243,7 @@ const commands = [
 ]
 
 const bind_keys = [
+  { old: 'KP_SLASH', new: 'KP_DIVIDE' },
   { old: 'KP_INS', new: 'KP_0' },
   { old: 'KP_END', new: 'KP_1' },
   { old: 'KP_DOWNARROW', new: 'KP_2' },
