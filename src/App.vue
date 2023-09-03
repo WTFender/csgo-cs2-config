@@ -243,21 +243,21 @@ const commands = [
 ]
 
 const bind_keys = [
-  { old: 'KP_SLASH', new: 'KP_DIVIDE' },
-  { old: 'KP_INS', new: 'KP_0' },
-  { old: 'KP_END', new: 'KP_1' },
-  { old: 'KP_DOWNARROW', new: 'KP_2' },
-  { old: 'KP_PGDN', new: 'KP_3' },
-  { old: 'KP_LEFTARROW', new: 'KP_4' },
-  // KP_5 is the same
-  { old: 'KP_RIGHTARROW', new: 'KP_6' },
-  { old: 'KP_HOME', new: 'KP_7' },
-  { old: 'KP_UPARROW', new: 'KP_8' },
-  { old: 'KP_PGUP', new: 'KP_9' },
-  { old: 'U AXIS NEG', new: null },
-  { old: 'Y AXIS NEG', new: null },
-  { old: 'Z AXIS POS', new: null },
-  { old: 'Z AXIS NEG', new: null },
+  { old: 'kp_slash', new: 'KP_DIVIDE' },
+  { old: 'kp_ins', new: 'KP_0' },
+  { old: 'kp_end', new: 'KP_1' },
+  { old: 'kp_downarrow', new: 'KP_2' },
+  { old: 'kp_pgdn', new: 'KP_3' },
+  { old: 'kp_leftarrow', new: 'KP_4' },
+  // kp_5 is the same
+  { old: 'kp_rightarrow', new: 'KP_6' },
+  { old: 'kp_home', new: 'KP_7' },
+  { old: 'kp_uparrow', new: 'KP_8' },
+  { old: 'kp_pgup', new: 'KP_9' },
+  { old: 'u axis neg', new: null },
+  { old: 'y axis neg', new: null },
+  { old: 'z axis pos', new: null },
+  { old: 'z axis neg', new: null },
 ]
 
 const bind_values = [
