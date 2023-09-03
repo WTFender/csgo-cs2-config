@@ -48,7 +48,7 @@ export default {
       // updated binds
       cfg.split('\n').forEach((line) => {
         this.bind_keys.forEach((bind) => {
-          if (bind.new !== null && line.startsWith(`bind "${bind.old}"`)) {
+          if (bind.new !== null && line.toLowerCase().startsWith(`bind "${bind.old}"`)) {
             let rex = new RegExp(`bind \"${bind.old}\"`, 'gmi')
             line = line.toLowerCase().replace(rex, `bind "${bind.new}"`)
 
