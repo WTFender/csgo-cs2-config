@@ -260,6 +260,7 @@ const bind_keys = [
 ]
 
 const bind_values = [
+  { old: 'radio3', new: 'radio' },
   { old: '+scorenet', new: '+showscores' },
   { old: '+moveleft', new: '+left' },
   { old: '+moveright', new: '+right' },
@@ -273,7 +274,6 @@ const bind_values = [
   { old: 'weapon_incgrenade', new: 'slot10' },
   // old
   { old: 'jumpthrow', new: null }, // generic
-  { old: 'radio3', new: null },
 ]
 </script>
 
