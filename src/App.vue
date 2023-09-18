@@ -10,11 +10,11 @@ import ConfigConverter from './components/ConfigConverter.vue'
 const commands = [
   // migrated
   { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
-  { old: 'cl_netgraph', new: 'cq_netgraph'}
+  { old: 'cl_netgraph', new: 'cq_netgraph'},
   // new commands & binds
   { old: null, new: 'bind "mouse_x"', default: 'yaw'},
   { old: null, new: 'bind "mouse_y"', default: 'pitch' },
-  // old
+  // old & unsupported commands (throw errors in console)
   { old: 'ai_report_task_timings_on_limit', new: null },
   { old: 'ai_think_limit_label', new: null },
   { old: 'budget_averages_window', new: null },
