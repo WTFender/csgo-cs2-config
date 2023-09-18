@@ -10,6 +10,7 @@ import ConfigConverter from './components/ConfigConverter.vue'
 const commands = [
   // migrated
   { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
+  { old: 'cl_netgraph', new: 'cq_netgraph'}
   // new commands & binds
   { old: null, new: 'bind "mouse_x"', default: 'yaw'},
   { old: null, new: 'bind "mouse_y"', default: 'pitch' },
@@ -67,6 +68,8 @@ const commands = [
   { old: 'cl_hud_playercount_pos', new: null },
   { old: 'cl_hud_playercount_showcount', new: null },
   { old: 'cl_idealpitchscale', new: null },
+  { old: 'cl_interp_ratio', new: null },
+  { old: 'cl_interp', new: null },
   { old: 'cl_inv_showdividerline', new: null },
   { old: 'cl_inventory_saved_filter', new: null },
   { old: 'cl_inventory_saved_sort', new: null },
@@ -85,6 +88,7 @@ const commands = [
   { old: 'cl_teamid_overhead_name_alpha', new: null },
   { old: 'cl_teamid_overhead_name_fadetime', new: null },
   { old: 'cl_thirdperson', new: null },
+  { old: 'cl_updaterate', new: null },
   { old: 'cl_viewmodel_shift_left_amt', new: null },
   { old: 'cl_viewmodel_shift_right_amt', new: null },
   { old: 'closeonbuy', new: null },
@@ -164,7 +168,6 @@ const commands = [
   { old: 'net_graphtext', new: null },
   { old: 'net_scale', new: null },
   { old: 'net_steamcnx_allowrelay', new: null },
-  { old: 'skill', new: null },
   { old: 'npc_height_adjust', new: null },
   { old: 'play_distance', new: null },
   { old: 'player_competitive_maplist_8_6_0_DFED41DC', new: null },
@@ -198,6 +201,7 @@ const commands = [
   { old: 'scene_showmoveto', new: null },
   { old: 'scene_showunlock', new: null },
   { old: 'sf_ui_tint', new: null },
+  { old: 'skill', new: null },
   { old: 'snd_ducking_off', new: null },
   { old: 'snd_legacy_surround', new: null },
   { old: 'snd_musicvolume_multiplier_inoverlay', new: null },
