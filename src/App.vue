@@ -9,6 +9,10 @@ import ConfigConverter from './components/ConfigConverter.vue'
 
 const rec_commands = [
   // not necessarily new, not necessarily recommended, but interesting
+  
+  
+  { new: 'hud_scaling', default: '1', note: 'hud scale' },
+  { new: 'cl_hud_color', default: '8', note: 'hud color, 8: green' },
   { new: 'cq_netgraph', default: '1', note: 'net graph' },
   { new: 'engine_low_latency_sleep_after_client_tick', default: 'true', note: 'required to uncap fps' },
   { new: 'fps_max', default: '0', note: 'uncapped fps' },

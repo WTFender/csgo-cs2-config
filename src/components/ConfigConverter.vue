@@ -172,9 +172,9 @@ export default {
       >
         {{ download.includes(cmd.new) ? '✓' : '+' }}
       </button>
-      <input style="margin-left: 5px;" type="text" v-model="cmd.new" disabled />
-      <input style="margin-left: 5px" type="text" v-model="cmd.default" />
-      <input style="margin-left: 5px; border: none;" type="text" v-model="cmd.note" disabled/>
+      <input style="margin-left: 5px; max-width: 200px;" type="text" v-model="cmd.new" disabled />
+      <input style="margin-left: 5px; max-width: 100px;" type="text" v-model="cmd.default" />
+      <input style="margin-left: 5px; max-width: 150px;" type="text" v-model="cmd.note" disabled/>
     </div>
   </Config>
 
@@ -199,7 +199,7 @@ export default {
 <style scoped>
 .config {
   margin-left: 20px;
-  width: 500px;
+  width: 550px;
   height: 150px;
   transition-duration: 2000ms;
 }
