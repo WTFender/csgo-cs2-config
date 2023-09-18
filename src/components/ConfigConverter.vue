@@ -5,6 +5,10 @@ import UploadIcon from "./icons/IconUpload.vue";
 import DownloadIcon from "./icons/IconDownload.vue";
 export default {
   props: {
+    rec_commands: {
+      type: Array,
+      required: true,
+    },
     commands: {
       type: Array,
       required: true,
@@ -20,6 +24,7 @@ export default {
   },
   data() {
     return {
+      added_commands: [],
       upload: "",
       copyText: "Click to Copy",
     };
@@ -44,6 +49,13 @@ export default {
     },
   },
   methods: {
+    removeAddedCommand(cmd){
+      this.added_commands = this.added_commands.filter((c) => c.new !== cmd.new);
+    },
+    addCommand(cmd) {
+      console.log('addCommand')
+      this.added_commands.push(cmd);
+    },
     copy() {
       navigator.clipboard.writeText(this.download);
       this.copyText = "Copied!";
@@ -90,12 +102,16 @@ export default {
         }
       });
 
+      // added commands
+      this.added_commands.forEach((cmd) => {
+        if (cmd.new !== null) {
+          new_cfg += `${cmd.new} "${cmd.default}"\n`;
+        }
+      });
+
       // updated commands
       this.commands.forEach((cmd) => {
-        if (cmd.old === null) {
-          // add new command
-          new_cfg += `\n${cmd.new} "${cmd.default}"`;
-        } else if (cmd.new !== null && "default" in cmd) {
+        if (cmd.new !== null && "default" in cmd) {
           // replace command line with new command & default value
           let rex = new RegExp(`^${cmd.old} .*$`, "gmi");
           new_cfg = new_cfg.replace(rex, `${cmd.new} "${cmd.default}"`);
@@ -147,6 +163,20 @@ export default {
     <input ref="fileUpload" id="fileUpload" type="file" hidden @change="setConfig()" />
   </Config>
 
+  <Config :active="false">
+    <template #heading>Add Recommended Commands</template>
+    <div v-for="cmd in rec_commands" :key="cmd.old">
+      <button type="button" style="margin-left: 20px; width: 30px;"
+        @click="download.includes(cmd.new) ? removeAddedCommand(cmd) : addCommand(cmd)"
+      >
+        {{ download.includes(cmd.new) ? '✓' : '+' }}
+      </button>
+      <input style="margin-left: 5px;" type="text" v-model="cmd.new" disabled />
+      <input style="margin-left: 5px" type="text" v-model="cmd.default" />
+      <input style="margin-left: 5px; border: none;" type="text" v-model="cmd.note" disabled/>
+    </div>
+  </Config>
+
   <Config :active="upload !== ''">
     <template #icon>
       <DownloadIcon :class="upload !== '' ? 'active' : ''" @click="downloadConfig()" />
@@ -167,6 +197,7 @@ export default {
 </template>
 <style scoped>
 .config {
+  margin-left: 20px;
   width: 500px;
   height: 150px;
   transition-duration: 2000ms;

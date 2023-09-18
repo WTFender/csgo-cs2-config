@@ -7,13 +7,18 @@ import ConfigConverter from './components/ConfigConverter.vue'
 // default: the default value for the cs2 command, if the
 //          value type has changed, the default will be set
 
+const rec_commands = [
+  // not necessarily new, but highly suggested
+  { new: 'cq_netgraph', default: '1', note: 'net graph'},
+  { new: 'r_fullscreen_gamma', default: '2', note: 'gamma'},
+  { new: 'bind "mouse_x"', default: 'yaw', note: 'mouse look'},
+  { new: 'bind "mouse_y"', default: 'pitch', note: 'mouse look' },
+]
+
 const commands = [
   // migrated
   { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
   { old: 'cl_netgraph', new: 'cq_netgraph'},
-  // new commands & binds
-  { old: null, new: 'bind "mouse_x"', default: 'yaw'},
-  { old: null, new: 'bind "mouse_y"', default: 'pitch' },
   // old & unsupported commands (throw errors in console)
   { old: 'ai_report_task_timings_on_limit', new: null },
   { old: 'ai_think_limit_label', new: null },
@@ -293,7 +298,7 @@ const bind_values = [
   </header>
 
   <main>
-    <ConfigConverter :commands="commands" :bind_keys="bind_keys" :bind_values="bind_values" />
+    <ConfigConverter :rec_commands="rec_commands" :commands="commands" :bind_keys="bind_keys" :bind_values="bind_values" />
   </main>
   <div style="float: right; padding-right: 25px;"><a href="https://github.com/WTFender/csgo-cs2-config/issues/new">🐛
       Missing Commands?</a></div><br>
