@@ -27,6 +27,7 @@ export default {
       added_commands: [],
       upload: "",
       copyText: "Click to Copy",
+      uploadPlaceholder: ''
     };
   },
   components: {
@@ -159,12 +160,12 @@ export default {
       <UploadIcon :class="upload === '' ? 'active' : ''" @click="uploadConfig()" />
     </template>
     <template #heading>Paste CSGO Config</template>
-    <textarea v-model="upload" class="config"></textarea>
+    <textarea v-model="upload" class="config" placeholder="- CSGO commands will be updated&#10;- Unsupported CS2 commands will be removed."></textarea>
     <input ref="fileUpload" id="fileUpload" type="file" hidden @change="setConfig()" />
   </Config>
 
   <Config :active="false">
-    <template #heading>Add Recommended Commands</template>
+    <template #heading>Add CS2 Commands</template>
     <div v-for="cmd in rec_commands" :key="cmd.old">
       <button type="button" style="margin-left: 20px; width: 30px;"
         @click="download.includes(cmd.new) ? removeAddedCommand(cmd) : addCommand(cmd)"

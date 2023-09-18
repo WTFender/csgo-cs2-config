@@ -8,10 +8,12 @@ import ConfigConverter from './components/ConfigConverter.vue'
 //          value type has changed, the default will be set
 
 const rec_commands = [
-  // not necessarily new, but highly suggested
-  { new: 'cq_netgraph', default: '1', note: 'net graph'},
-  { new: 'r_fullscreen_gamma', default: '2', note: 'gamma'},
-  { new: 'bind "mouse_x"', default: 'yaw', note: 'mouse look'},
+  // not necessarily new, not necessarily recommended, but interesting
+  { new: 'cq_netgraph', default: '1', note: 'net graph' },
+  { new: 'engine_low_latency_sleep_after_client_tick', default: 'true', note: 'required to uncap fps' },
+  { new: 'fps_max', default: '0', note: 'uncapped fps' },
+  { new: 'r_fullscreen_gamma', default: '2', note: 'gamma' },
+  { new: 'bind "mouse_x"', default: 'yaw', note: 'mouse look' },
   { new: 'bind "mouse_y"', default: 'pitch', note: 'mouse look' },
 ]
 
