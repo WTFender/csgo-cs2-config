@@ -177,7 +177,7 @@ export default {
       <UploadIcon :class="upload === '' ? 'active' : ''" @click="uploadConfig()" />
     </template>
     <template #heading>Paste CSGO Config</template>
-    <textarea v-model="upload" class="config" placeholder="- CSGO commands will be updated&#10;- Unsupported CS2 commands will be removed."></textarea>
+    <textarea v-model="upload" class="config" placeholder="- CSGO commands will be updated&#10;- Unsupported CS2 commands will be removed"></textarea>
     <input ref="fileUpload" id="fileUpload" type="file" hidden @change="setConfig()" />
   </Config>
 
