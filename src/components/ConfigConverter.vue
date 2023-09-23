@@ -36,6 +36,9 @@ export default {
     DownloadIcon,
   },
   computed: {
+    includesAllCommands() {
+      return this.rec_commands.every((cmd) => this.download.includes(cmd.new));
+    },
     isDarkMode() {
       if (
         window.matchMedia &&
@@ -50,6 +53,20 @@ export default {
     },
   },
   methods: {
+    removeAllCommands() {
+      this.rec_commands.forEach((cmd) => {
+        if (this.download.includes(cmd.new)) {
+          this.removeAddedCommand(cmd);
+        }
+      });
+    },
+    addAllCommands() {
+      this.rec_commands.forEach((cmd) => {
+        if (!this.download.includes(cmd.new)) {
+          this.addCommand(cmd);
+        }
+      });
+    },
     removeAddedCommand(cmd){
       this.added_commands = this.added_commands.filter((c) => c.new !== cmd.new);
     },
@@ -166,6 +183,11 @@ export default {
 
   <Config :active="false">
     <template #heading>Add CS2 Commands</template>
+    <button type="button" style="margin-left: 20px; width: 205px;"
+        @click="includesAllCommands ? removeAllCommands() : addAllCommands()"
+      >
+        {{ includesAllCommands ? 'Remove All Commands' : 'Add All Commands' }}
+      </button>
     <div v-for="cmd in rec_commands" :key="cmd.old">
       <button type="button" style="margin-left: 20px; width: 30px;"
         @click="download.includes(cmd.new) ? removeAddedCommand(cmd) : addCommand(cmd)"
