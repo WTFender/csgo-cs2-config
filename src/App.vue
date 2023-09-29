@@ -9,8 +9,6 @@ import ConfigConverter from './components/ConfigConverter.vue'
 
 const rec_commands = [
   // not necessarily new, not necessarily recommended, but interesting
-  
-  
   { new: 'hud_scaling', default: '1', note: 'hud scale' },
   { new: 'cl_hud_color', default: '8', note: 'hud color, 8: green' },
   { new: 'cq_netgraph', default: '1', note: 'net graph' },
@@ -23,8 +21,11 @@ const rec_commands = [
 
 const commands = [
   // migrated
-  { old: 'voice_enable', new: 'sv_voiceenable', default: 'true' },
-  { old: 'cl_netgraph', new: 'cq_netgraph'},
+  { old: 'cl_netgraph', new: 'cq_netgraph' },
+  { old: 'zoom_sensitivity_ratio_mouse', new: 'zoom_sensitivity_ratio' },
+  { old: 'fps_max_menu', new: 'fps_max_ui' },
+  { old: 'voice_scale', new: 'snd_voipvolume' },
+  { old: 'voice_enable', new: 'voice_modenable' },
   // old & unsupported commands (throw errors in console)
   { old: 'ai_report_task_timings_on_limit', new: null },
   { old: 'ai_think_limit_label', new: null },
@@ -194,6 +195,7 @@ const commands = [
   { old: 'player_maplast_m', new: null },
   { old: 'player_maplast_s', new: null },
   { old: 'player_medalstats_most_recent_time', new: null },
+  { old: 'r_cleardecals', new: null },
   { old: 'r_drawmodelstatsoverlaymax', new: null },
   { old: 'r_drawmodelstatsoverlaymin', new: null },
   { old: 'r_eyegloss', new: null },
@@ -249,7 +251,7 @@ const commands = [
   { old: 'vprof_verbose', new: null },
   { old: 'vprof_warningmsec', new: null },
   { old: 'weapon_accuracy_logging', new: null },
-  { old: 'windows_speaker_config', new: null },
+  { old: 'windows_speaker_config', new: null }, // maybe sound_config
   { old: 'xbox_autothrottle', new: null },
   { old: 'xbox_throttlebias', new: null },
   { old: 'xbox_throttlespoof', new: null },
